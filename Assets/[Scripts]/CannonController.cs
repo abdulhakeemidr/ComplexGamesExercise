@@ -21,9 +21,10 @@ public class CannonController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            // Spawns a cannon ball and adds an impulse force to the ball for each space bar press
             GameObject cannonBall = Instantiate(cannonBallPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
             cannonBall.GetComponent<Rigidbody>().
-                AddForce(ballSpawnPoint.transform.forward * shootForce, ForceMode.Impulse);
+            AddForce(ballSpawnPoint.transform.forward * shootForce, ForceMode.Impulse);
         }
     }
 
@@ -32,6 +33,7 @@ public class CannonController : MonoBehaviour
         sideRotation += speed * Input.GetAxis("Horizontal") * Time.deltaTime;
         verticalRotation += speed * -Input.GetAxis("Vertical") * Time.deltaTime;
 
+        // Limits the radius of the horizontal and vertical rotations
         sideRotation = Mathf.Clamp(sideRotation, -90f, 90f);
         verticalRotation = Mathf.Clamp(verticalRotation, -90f, 0f);
 
